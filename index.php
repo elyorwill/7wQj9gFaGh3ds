@@ -3,7 +3,8 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RM v2</title>
+	<title>Rentmarket</title>
+	<link rel="icon" type="image/png" href="images/favicon.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -62,7 +63,7 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<li class="btn btn-primary"><a href="#"> <i class="fa fa-cloud-upload"></i> Post</a></li>
+							<li class="btn btn-primary"><a href="#"> <i class="fa fa-cloud-upload"></i> List your space</a></li>
 							<li><a href="#"><i class="fa fa-user"></i> Sign Up</a></li>
 							<li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
 						</ul>
