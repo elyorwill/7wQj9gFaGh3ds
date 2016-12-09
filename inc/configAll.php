@@ -10,13 +10,19 @@ if(session_id() == '') {
     session_start();
 }
 
-
-$db_username = 'root';
-$db_password = '';
+//online
+$db_username = 'xst60icf6z';
+$db_password = 'apl73fny8GsksK02';
 $db_name = 'rentmarket';
+$db_host = 'aac9ct2vh1ez7i.chzjx9qi5ks8.ap-southeast-1.rds.amazonaws.com';
+
+//offline
+// $db_username = 'root';
+// $db_password = '';
+// $db_name = 'rentmarket';
+// $db_host = 'localhost';
 
 
-$db_host = 'localhost';
 $connecDB = mysqli_connect($db_host, $db_username, $db_password,$db_name) or die('could not connect to database');
 
 
