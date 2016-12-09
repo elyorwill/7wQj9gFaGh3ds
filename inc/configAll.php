@@ -14,7 +14,7 @@ if(session_id() == '') {
 $db_username = 'xst60icf6z';
 $db_password = 'apl73fny8GsksK02';
 $db_name = 'rentmarket';
-$db_host = 'aac9ct2vh1ez7i.chzjx9qi5ks8.ap-southeast-1.rds.amazonaws.com';
+$db_host = 'localhost';
 
 //offline
 // $db_username = 'root';
