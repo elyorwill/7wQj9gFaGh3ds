@@ -13,5 +13,36 @@ while($mysqltables = mysqli_fetch_array($showtables)){
 }
 $mysqtablescol .='</ul>';
 
-echo $mysqtablescol;
+
+$sqlrunresult='';
+
+if(isset($_POST['runsql'])){
+ $sqlinject = $_POST['sql'];
+
+ $runmysql = mysqli_query($connecDB,$sqlinject);
+ if($runmysql){
+   $sqlrunresult .='SUCCESS!';
+ }else {
+   $sqlrunresult .= mysqli_error($connecDB);
+ }
+}
+
  ?>
+
+ <html>
+<head></head>
+
+<body>
+  <?php
+
+echo $mysqtablescol.'<hr>';
+
+echo $sqlrunresult.'<hr>';
+   ?>
+<form action="?runsql" method="post">
+<label>Query:</label><br>
+<textarea name="sql"></textarea><br>
+<input name="runsql" type="submit"/>
+</form>
+</body>
+ </html>
