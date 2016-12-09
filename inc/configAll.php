@@ -23,8 +23,9 @@ $db_host = 'aac9ct2vh1ez7i.chzjx9qi5ks8.ap-southeast-1.rds.amazonaws.com:3306';
 // $db_host = 'localhost';
 
 
-$connecDB = mysqli_connect($db_host, $db_username, $db_password,$db_name) or die('could not connect to database');
+// $connecDB = mysqli_connect($db_host, $db_username, $db_password,$db_name) or die('could not connect to database');
 
+$connecDB = mysqli_connect($_SERVER['RDS_HOSTNAME'], $_SERVER['RDS_USERNAME'], $_SERVER['RDS_PASSWORD'], $_SERVER['RDS_DB_NAME'], $_SERVER['RDS_PORT']);
 
 $createdatabasesql = "CREATE DATABASE IF NOT EXISTS rentmarket";
 mysqli_query($connecDB,$createdatabasesql);
