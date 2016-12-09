@@ -19,18 +19,19 @@ if (strpos($currenturl,'7wQj9gFaGh3ds') !== false) {
   $db_password = '';
   $db_name = 'rentmarket';
   $db_host = 'localhost';
+    $connecDB = mysqli_connect($db_host, $db_username, $db_password, $db_name) or die('could not connect to database');
 } else {
   //AWS online
   $db_username = $_SERVER['RDS_USERNAME'];
   $db_password = $_SERVER['RDS_PASSWORD'];
   $db_name = $_SERVER['RDS_DB_NAME'];
   $db_port = $_SERVER['RDS_PORT'];
-  $db_host = $_SERVER['RDS_HOSTNAME'].', '.$db_port;
+  $db_host = $_SERVER['RDS_HOSTNAME'];
 
-
+  $connecDB = mysqli_connect($db_host, $db_username, $db_password, $db_name,$db_port) or die('could not connect to database');
 }
 
-  $connecDB = mysqli_connect($db_host, $db_username, $db_password, $db_name) or die('could not connect to database');
+
 
 
 
