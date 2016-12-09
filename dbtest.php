@@ -26,6 +26,13 @@ if(isset($_POST['runsql'])){
  }
 }
 
+
+//db info
+$dbinformation='<br>DB info:';
+$dbinformation .= '<br>Host: '.$db_host;
+$dbinformation .= '<br>Username: '.$db_username;
+$dbinformation .= '<br>Password: '.$db_password;
+$dbinformation .= '<br>DB: '.$db_name;
  ?>
 
  <html>
@@ -39,6 +46,8 @@ echo $sqlrunresult.'<hr>';
 echo '<pre>';
 print_r($mysqtablescol);
 echo '</pre>';
+
+echo $dbinformation;
    ?>
 <form action="?runsql" method="post">
 <label>Query:</label><br>

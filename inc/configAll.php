@@ -34,6 +34,8 @@ if (strpos($currenturl,'7wQj9gFaGh3ds') !== false) {
 
 
 
+
+
 $createdatabasesql = "CREATE DATABASE IF NOT EXISTS rentmarket";
 mysqli_query($connecDB,$createdatabasesql);
 
