@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+
+include_once 'inc/configAll.php';
+
+
+
+ ?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
