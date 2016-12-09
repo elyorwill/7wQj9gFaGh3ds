@@ -7,11 +7,10 @@ include_once 'inc/configAll.php';
 
 $showtables = mysqli_query($connecDB,"show tables");
 
-$mysqtablescol='<ol>';
-while($mysqltables = mysqli_fetch_array($showtables)){
-  $mysqtablescol .= '<li>'.$mysqltables['Tables_in_rentmarket']."</li>";
-}
-$mysqtablescol .='</ul>';
+$mysqtablescol=array();
+
+$mysqtablescol = mysqli_fetch_array($showtables);
+
 
 
 $sqlrunresult='';
@@ -35,9 +34,11 @@ if(isset($_POST['runsql'])){
 <body>
   <?php
 
-echo $mysqtablescol.'<hr>';
-
 echo $sqlrunresult.'<hr>';
+
+echo '<pre>';
+print_r($mysqtablescol);
+echo '</pre>';
    ?>
 <form action="?runsql" method="post">
 <label>Query:</label><br>
