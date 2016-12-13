@@ -5,7 +5,9 @@ include_once '../inc/configAll.php';
 
 include_once 'inc/head.php';
 
-//item rpice mode
+$_SESSION['rdrlocation'] = $currenturl;
+
+//item price mode
 $itempricemodequery = mysqli_query($connecDB,"select * from itempricemode");
 $itempricemodes = '<select name="pricemode" required class="form-control">';
 while($itempricemoderow = mysqli_fetch_array($itempricemodequery)){
@@ -21,6 +23,34 @@ while($itemcategoryrow = mysqli_fetch_array($itemcategoryquery)){
 }
 $itemcategories .= '</select>';
 
+//users
+$userslistquery = mysqli_query($connecDB,"select * from user");
+$userslists = '<select name="ownerid" required class="form-control"><option value="">- Choose -</option>';
+while($usersrow = mysqli_fetch_array($userslistquery)){
+  $userslists .= '<option value="'.$usersrow['id'].'">'.$usersrow['fullname'].'</option>';
+}
+$userslists .= '</select>';
+
+//countries
+$countriesquery = mysqli_query($connecDB,"select * from all_countries");
+$countrieslist = '<select name="country" required class="form-control"><option value="">- Choose -</option>';
+while($countriesrow = mysqli_fetch_array($countriesquery)){
+  $countrieslist .= '<option value="'.$countriesrow['id'].'">'.$countriesrow['country_name'].'</option>';
+}
+$countrieslist .= '</select>';
+
+
+//latest items
+$latestitemquery = mysqli_query($connecDB,"select * from item order by postdate desc limit 30");
+$latestitemlist = '';
+while($latestitemrow = mysqli_fetch_array($latestitemquery)){
+  $latestitemlist .='<tr>';
+  $latestitemlist .='<td>'.$latestitemrow['title'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['category'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['postdate'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['ownerid'].'</td>';
+  $latestitemlist .='</tr>';
+}
  ?>
 
 <body>
@@ -56,18 +86,19 @@ $itemcategories .= '</select>';
                 <!-- /.row -->
 
                 <div class="col-md-6">
-                <form action="#" method="post" enctype="multipart/form-data">
+                  <?php
+                  echo $notficationmsg;
+                   ?>
+                <form action="../vals/itemadd.php" method="post" enctype="multipart/form-data">
 
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <label>Listing owner*</label>
-                        <select required name="hometype" class="form-control">
-                        <option value="">Select...</option>
-                        <option value="Apartment">Apartment</option>
-                        <option value="House">House</option>
-                        <option value="Bed &amp; Breakfast">Bed &amp; Breakfast</option>
-                        </select>
+                         <a class="pull-right" href="user-add.php">+ Add new user</a>
+                        <label>Listing owner *</label>
+                        <?php
+                        echo $userslists;
+                         ?>
                       </div>
                     </div>
                   </div>
@@ -130,14 +161,14 @@ $itemcategories .= '</select>';
                     <div class="col-sm-4">
                       <div class="form-group">
                         <label>Longtitude</label>
-                        <input type="text" name="longtitude" class="form-control">
+                        <input type="text" name="longitude" class="form-control">
                         </select>
                       </div>
                     </div>
                     <div class="col-sm-4">
                       <div class="form-group">
                         <label>Lattitude</label>
-                        <input type="text" name="lattitude" class="form-control">
+                        <input type="text" name="latitude" class="form-control">
                       </div>
                     </div>
                     <div class="col-sm-4">
@@ -152,17 +183,15 @@ $itemcategories .= '</select>';
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>Country</label>
-                        <select name="country" class="form-control">
-                        <option value="">Select...</option>
-                        </select>
+                        <?php
+                        echo $countrieslist;
+                         ?>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label>City</label>
-                        <select name="city" class="form-control">
-                        <option value="">Select...</option>
-                        </select>
+                        <input type="text" name="city" class="form-control" placeholder="Enter a city name">
                       </div>
                     </div>
                   </div>
@@ -287,10 +316,10 @@ $itemcategories .= '</select>';
 
                   <div class="row">
                     <div class="col-sm-6">
-                      <label>Price (RM) *</label>
+                      <label>Price *</label>
                       <div class="input-group">
-              					<div class="input-group-addon">$</div>
-              					<input placeholder="number only" name="price" required class="form-control" type="number" min="1" max="99999999999"  />
+              					<div class="input-group-addon">RM</div>
+              					<input placeholder="number only" name="priceoriginal" required class="form-control" type="number" min="1" max="99999999999"  />
               				</div>
 
                     </div>
@@ -333,18 +362,42 @@ $itemcategories .= '</select>';
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <button type="submit" name="submitpost" class="btn btn-primary">Submit</button>
+                        <button type="submit" value="2" name="submitpost" class="btn btn-primary">Submit</button>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <button type="submit" name="submitpost" class="btn btn-default pull-right">Save to draft</button>
+                        <button type="submit" value="3" name="submitpost" class="btn btn-default pull-right">Save to draft</button>
                       </div>
                     </div>
                   </div>
 
                 </form>
               </div>
+
+              <div class="col-lg-6">
+                  <div class="table-responsive">
+                    <a class="pull-right" href="items.php">View All listings</a>
+                    <p>Latest Entries</p>
+                      <table class="table table-bordered table-hover">
+                          <thead>
+                              <tr>
+                                  <th>Title</th>
+                                  <th>Category</th>
+                                  <th>Postdate</th>
+                                  <th>Owner ID</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            echo $latestitemlist;
+                             ?>
+
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+
             </div>
             <!-- /.container-fluid -->
 

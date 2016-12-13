@@ -5,7 +5,28 @@ include_once '../inc/configAll.php';
 
 include_once 'inc/head.php';
 
-
+//latest items
+$latestitemquery = mysqli_query($connecDB,"select * from item i
+                                            left join user u on i.ownerid = u.id
+                                            left join itemprice p on i.id = p.listid
+                                            left join itemlocation l on i.id = l.listid
+                                            order by i.postdate desc");
+$latestitemlist = '';
+while($latestitemrow = mysqli_fetch_array($latestitemquery)){
+  $latestitemlist .='<tr>';
+  $latestitemlist .='<td>'.$latestitemrow['title'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['pricecurrency'].''.$latestitemrow['priceoriginal'].' '.$latestitemrow['pricemode'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['category'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['hometype'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['roomtype'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['accommodate'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['bedrooms'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['bathrooms'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['fullname'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['postdate'].'</td>';
+  $latestitemlist .='<td>...</td>';
+  $latestitemlist .='</tr>';
+}
 
  ?>
 
@@ -46,115 +67,25 @@ include_once 'inc/head.php';
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
+                                        <th>Title</th>
+                                        <th>Price</th>
+                                        <th>Category</th>
+                                        <th>Home</th>
+                                        <th>Room</th>
+                                        <th><i title="Accommodates" class="fa fa-home"></i></th>
+                                        <th><i title="Bedrooms" class="fa fa-bed"></i></th>
+                                        <th><i title="Bathrooms" class="fa fa-bath"></i></th>
+                                        <th>Owner</th>
+                                        <th>Postdate</th>
+                                        <th>Options</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
+                                    <?php
+                                    echo $latestitemlist;
+                                     ?>
+
+
                                 </tbody>
                             </table>
                         </div>

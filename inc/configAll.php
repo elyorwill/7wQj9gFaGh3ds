@@ -11,6 +11,15 @@ if(session_id() == '') {
 }
 
 
+$_SESSION['shomeurl'] = 'http://localhost/rentmarket/7wQj9gFaGh3ds';
+
+// if(!isset($loginpage)){
+//   if(!isset($_SESSION['onlineadminid'])){
+//     $_SESSION['rmnotfymsg'] = "Please login to continue";
+//     header('location: '.$_SESSION['shomeurl'].'/login.php');
+//   }
+// }
+
 $currenturl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
 if (strpos($currenturl,'7wQj9gFaGh3ds') !== false) {
@@ -34,14 +43,12 @@ if (strpos($currenturl,'7wQj9gFaGh3ds') !== false) {
 
 
 
+// $createdatabasesql = "CREATE DATABASE IF NOT EXISTS rentmarket";
+// mysqli_query($connecDB,$createdatabasesql);
 
 
 
-$createdatabasesql = "CREATE DATABASE IF NOT EXISTS rentmarket";
-mysqli_query($connecDB,$createdatabasesql);
-
-$_SESSION['shomeurl'] = 'http://localhost/rentmarket/7wQj9gFaGh3ds';
-
+$defaultcurrency = "RM";
 
 if(isset($_SESSION['rmnotfymsg'])){
     $notficationmsg = $_SESSION['rmnotfymsg'];

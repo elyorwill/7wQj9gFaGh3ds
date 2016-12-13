@@ -106,7 +106,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a href="../vals/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                 </li>
             </ul>
         </li>
@@ -125,7 +125,7 @@
                 <a href="items.php"><i class="fa fa-fw fa-table"></i> Listings</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-group"></i> Users</a>
+                <a href="users.php"><i class="fa fa-fw fa-group"></i> Users</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-fw fa-cogs"></i> Setting</a>

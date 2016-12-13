@@ -1,6 +1,6 @@
 
-
 <?php
+include_once '../inc/configAll.php';
 
 include_once 'inc/head.php';
 

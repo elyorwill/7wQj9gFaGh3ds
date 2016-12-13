@@ -1,3 +1,13 @@
+<?php
+
+if(!isset($loginpage)){
+  if(!isset($_SESSION['onlineadminid'])){
+    $_SESSION['rmnotfymsg'] = '<p class="alert alert-danger">Login to continue</p>';
+    header('location: '.$_SESSION['shomeurl'].'/admin/login.php');
+  }
+}
+
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +31,7 @@
     <link href="css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
