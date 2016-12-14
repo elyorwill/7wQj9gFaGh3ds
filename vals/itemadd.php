@@ -122,7 +122,7 @@ if(isset($_POST['submitpost'])){
 
                     if(move_uploaded_file($tmpFilePath, $newFilePath)){
 
-                        $addimgQuery = mysqli_query($connecDB, "insert into itemphotos(itemid, photo, sortby) values('$itemid', '$primage', 1)");
+                        $addimgQuery = mysqli_query($connecDB, "insert into itemphotos(itemid, photo, sortnum) values('$itemid', '$primage', 1)");
 
                         if($addimgQuery){
 

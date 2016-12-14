@@ -16,7 +16,17 @@ while($userlistrow = mysqli_fetch_array($userlistquery)){
   $userlists .= '<td>'.$userlistrow['phone'].'</td>';
   $userlists .= '<td>'.$userlistrow['regdate'].'</td>';
   $userlists .= '<td>'.$userlistrow['regip'].'</td>';
-  $userlists .= '<td>...</td>';
+  $userlists .= '<td><div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#">View Details</a></li>
+                      <li><a href="#">Edit Profile</a></li>
+                      <li><a href="#">Edit Address</a></li>
+                      <li><a href="#">Change Photo</a></li>
+                      <li><a href="#">Block</a></li>
+                    </ul>
+                  </div>
+                </td>';
   $userlists .= '</tr>';
 }
 

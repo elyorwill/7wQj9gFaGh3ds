@@ -4,8 +4,16 @@ session_start();
 
 include_once 'inc/configAll.php';
 
+$itemsql = "select i.title, i.roomtype, p.pricecurrency, p.priceoriginal, p.pricemode from item i
+LEFT JOIN itemprice p on p.listid = i.id";
 
+$itemquery = mysqli_query($connecDB,$itemsql);
 
+$listcollect = '';
+while($itemrow = mysqli_fetch_array($itemquery)){
+  $listcollect = '';
+  
+}
  ?>
 
 <!DOCTYPE HTML>
