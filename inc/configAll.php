@@ -47,6 +47,9 @@ if (strpos($currenturl,'7wQj9gFaGh3ds') !== false) {
 // mysqli_query($connecDB,$createdatabasesql);
 
 
+//used to send verification link
+$rmnoreplyemail = 'no-reply@rentmarket.com.my';
+
 
 $defaultcurrency = "RM";
 

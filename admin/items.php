@@ -13,6 +13,10 @@ $latestitemquery = mysqli_query($connecDB,"select * from item i
                                             order by i.postdate desc");
 $latestitemlist = '';
 while($latestitemrow = mysqli_fetch_array($latestitemquery)){
+
+  if(empty($latestitemrow['fullname']))
+  $latestitemrow['fullname'] = "[not found]";
+
   $latestitemlist .='<tr>';
   $latestitemlist .='<td>'.$latestitemrow['title'].'</td>';
   $latestitemlist .='<td>'.$latestitemrow['pricecurrency'].''.$latestitemrow['priceoriginal'].' '.$latestitemrow['pricemode'].'</td>';
@@ -24,7 +28,15 @@ while($latestitemrow = mysqli_fetch_array($latestitemquery)){
   $latestitemlist .='<td>'.$latestitemrow['bathrooms'].'</td>';
   $latestitemlist .='<td>'.$latestitemrow['fullname'].'</td>';
   $latestitemlist .='<td>'.$latestitemrow['postdate'].'</td>';
-  $latestitemlist .='<td>...</td>';
+  $latestitemlist .='<td><div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="item-info.php?id='.$latestitemrow['id'].'&info">General Details</a></li>
+                      <li><a href="item-info.php?id='.$latestitemrow['id'].'&photos">Photos</a></li>
+                      <li><a href="item-info.php?id='.$latestitemrow['id'].'&photo">Host info</a></li>
+                      <li><a href="item-info.php?id='.$latestitemrow['id'].'&amenities">Amenities</a></li>
+                    </ul>
+                  </div></td>';
   $latestitemlist .='</tr>';
 }
 
@@ -75,7 +87,7 @@ while($latestitemrow = mysqli_fetch_array($latestitemquery)){
                                         <th><i title="Accommodates" class="fa fa-home"></i></th>
                                         <th><i title="Bedrooms" class="fa fa-bed"></i></th>
                                         <th><i title="Bathrooms" class="fa fa-bath"></i></th>
-                                        <th>Owner</th>
+                                        <th>Host</th>
                                         <th>Postdate</th>
                                         <th>Options</th>
                                     </tr>

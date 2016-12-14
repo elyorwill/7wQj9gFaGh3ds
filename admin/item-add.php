@@ -33,7 +33,7 @@ $userslists .= '</select>';
 
 //countries
 $countriesquery = mysqli_query($connecDB,"select * from all_countries");
-$countrieslist = '<select name="country" required class="form-control"><option value="">- Choose -</option>';
+$countrieslist = '<select name="country" class="form-control"><option value="">- Choose -</option>';
 while($countriesrow = mysqli_fetch_array($countriesquery)){
   $countrieslist .= '<option value="'.$countriesrow['id'].'">'.$countriesrow['country_name'].'</option>';
 }

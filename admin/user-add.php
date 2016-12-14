@@ -6,7 +6,7 @@ include_once '../inc/configAll.php';
 
 include_once 'inc/head.php';
 
-$_SESSION['rdrlocation'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$_SESSION['rdrlocation'] = $currenturl;
 
  ?>
 
@@ -93,7 +93,7 @@ $_SESSION['rdrlocation'] = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <button type="submit" name="submituserform" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="submituserform" value="admin" class="btn btn-primary">Submit</button>
                       </div>
                     </div>
                   </div>

@@ -6,12 +6,14 @@ include_once '../inc/configAll.php';
 
 include_once 'inc/head.php';
 
+$_SESSION['rdrlocation'] = $currenturl;
+
 //fetch users into table
 $userlistquery = mysqli_query($connecDB,"select * from user order by regdate desc");
 $userlists = '';
 while($userlistrow = mysqli_fetch_array($userlistquery)){
   $userlists .= '<tr>';
-  $userlists .= '<td>'.$userlistrow['fullname'].'</td>';
+  $userlists .= '<td><a href="user-info.php?id='.$userlistrow['id'].'&profile">'.$userlistrow['fullname'].'</a></td>';
   $userlists .= '<td>'.$userlistrow['email'].'</td>';
   $userlists .= '<td>'.$userlistrow['phone'].'</td>';
   $userlists .= '<td>'.$userlistrow['regdate'].'</td>';
@@ -19,11 +21,10 @@ while($userlistrow = mysqli_fetch_array($userlistquery)){
   $userlists .= '<td><div class="input-group-btn">
                     <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right">
-                      <li><a href="#">View Details</a></li>
-                      <li><a href="#">Edit Profile</a></li>
-                      <li><a href="#">Edit Address</a></li>
-                      <li><a href="#">Change Photo</a></li>
-                      <li><a href="#">Block</a></li>
+                      <li><a href="user-info.php?id='.$userlistrow['id'].'&profile">Profile details</a></li>
+                      <li><a href="user-info.php?id='.$userlistrow['id'].'&address">Update Address</a></li>
+                      <li><a href="user-info.php?id='.$userlistrow['id'].'&photo">Change Photo</a></li>
+                      <li><a href="user-info.php?id='.$userlistrow['id'].'&loginlogs">Login Logs</a></li>
                     </ul>
                   </div>
                 </td>';
@@ -66,6 +67,9 @@ while($userlistrow = mysqli_fetch_array($userlistquery)){
                     <div class="col-lg-12">
                       <a href="user-add.php" class="pull-right btn btn-success btn-xs">+ Add new user</a>
                       <label>Registered Users</label>
+                      <?php
+                      echo $notficationmsg;
+                       ?>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
