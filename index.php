@@ -4,16 +4,32 @@ session_start();
 
 include_once 'inc/configAll.php';
 
-$itemsql = "select i.title, i.roomtype, p.pricecurrency, p.priceoriginal, p.pricemode from item i
-LEFT JOIN itemprice p on p.listid = i.id";
+$itemsql = "select i.id, i.title, p.pricecurrency as currency, p.priceoriginal as price, p.pricemode,
+            i.category, i.hometype, i.roomtype, i.accommodate, i.bedrooms, i.bathrooms, u.fullname, i.postdate,
+            u.id as uid, ph.photo as itemcover, count(ph.id) as totalphotos, MIN(ph.sortnum) as minsortnum
+            from item i
+            left join user u on i.hostid = u.id
+            left join itemprice p on i.id = p.listid
+            left join itemlocation l on i.id = l.listid
+            left join itemphotos ph on i.id = ph.itemid and ph.sortnum = (select sortnum from itemphotos where itemid = i.id order by sortnum limit 1)
+            group by i.id
+            order by i.postdate desc";
 
 $itemquery = mysqli_query($connecDB,$itemsql);
 
-$listcollect = '';
+$listcollect = '<ul id="fh5co-portfolio-list">';
+
 while($itemrow = mysqli_fetch_array($itemquery)){
-  $listcollect = '';
-  
+  $listcollect .= '<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(uploads/items/'.$itemrow['id'].'/grid/'.$itemrow['itemcover'].'); ">
+                    <a href="#">
+                      <div class="case-studies-summary">
+                        <span>'.$itemrow['title'].'</span>
+                          <h2>'.$itemrow['currency'].''.$itemrow['price'].' '.$itemrow['pricemode'].'</h2>
+                      </div>
+                    </a>
+                  </li>';
 }
+$listcollect .= '</ul>';
  ?>
 
 <!DOCTYPE HTML>
@@ -185,222 +201,15 @@ while($itemrow = mysqli_fetch_array($itemquery)){
 		<div class="container-fluid">
 			<div class="row row-bottom-padded-md">
 				<div class="col-md-12">
-						<h3 class="itemstitle"><i class="fa fa-home"></i> Living Space</h3>
+						<h3 class="itemstitle"><i class="fa fa-list"></i> All Listings</h3>
 				</div>
 				<div class="col-md-12">
 
-					<ul id="fh5co-portfolio-list">
+<?php
+echo $listcollect;
+ ?>
+<hr>
 
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-1.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Illustration</span>
-									<h2>Useful baskets</h2>
-								</div>
-							</a>
-						</li>
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-2.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Skater man in the road</h2>
-								</div>
-							</a>
-						</li>
-
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-3.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Two Glas of Juice</h2>
-								</div>
-							</a>
-						</li>
-
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-4.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Timer starts now!</h2>
-								</div>
-							</a>
-						</li>
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-3.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Two Glas of Juice</h2>
-								</div>
-							</a>
-						</li>
-						<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-5.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Illustration</span>
-									<h2>Beautiful sunset</h2>
-								</div>
-							</a>
-						</li>
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-3.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Two Glas of Juice</h2>
-								</div>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div>
-		<div class="container-fluid">
-			<div class="row row-bottom-padded-md">
-				<div class="col-md-12">
-						<h3 class="itemstitle"><i class="fa fa-building"></i> Working Space</h3>
-				</div>
-				<div class="col-md-12">
-
-					<ul id="fh5co-portfolio-list">
-
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-1.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Illustration</span>
-									<h2>Useful baskets</h2>
-								</div>
-							</a>
-						</li>
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-2.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Skater man in the road</h2>
-								</div>
-							</a>
-						</li>
-
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-3.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Two Glas of Juice</h2>
-								</div>
-							</a>
-						</li>
-
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-4.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Timer starts now!</h2>
-								</div>
-							</a>
-						</li>
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-3.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Two Glas of Juice</h2>
-								</div>
-							</a>
-						</li>
-						<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-5.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Illustration</span>
-									<h2>Beautiful sunset</h2>
-								</div>
-							</a>
-						</li>
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-3.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Two Glas of Juice</h2>
-								</div>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<div>
-		<div class="container-fluid">
-			<div class="row row-bottom-padded-md">
-				<div class="col-md-12">
-						<h3 class="itemstitle"><i class="fa fa-bed"></i> Leasure Space</h3>
-				</div>
-				<div class="col-md-12">
-
-					<ul id="fh5co-portfolio-list">
-
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-1.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Illustration</span>
-									<h2>Useful baskets</h2>
-								</div>
-							</a>
-						</li>
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-2.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Skater man in the road</h2>
-								</div>
-							</a>
-						</li>
-
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-3.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Two Glas of Juice</h2>
-								</div>
-							</a>
-						</li>
-
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-4.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Timer starts now!</h2>
-								</div>
-							</a>
-						</li>
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-3.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Two Glas of Juice</h2>
-								</div>
-							</a>
-						</li>
-						<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-5.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Illustration</span>
-									<h2>Beautiful sunset</h2>
-								</div>
-							</a>
-						</li>
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/gallery-3.jpg); ">
-							<a href="#">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Two Glas of Juice</h2>
-								</div>
-							</a>
-						</li>
-					</ul>
 				</div>
 			</div>
 		</div>

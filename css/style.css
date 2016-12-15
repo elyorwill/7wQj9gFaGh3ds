@@ -557,11 +557,11 @@ h1, h2, h3, h4, h5, h6, figure {
     color: #fff;
 }
 .stylish-input-group .input-group-addon{
-    background: white !important; 
+    background: white !important;
 }
 .stylish-input-group .form-control{
-	border-right:0; 
-	box-shadow:0 0 0; 
+	border-right:0;
+	box-shadow:0 0 0;
 	border-color:#ccc;
 }
 .stylish-input-group button{
@@ -945,7 +945,7 @@ h1, h2, h3, h4, h5, h6, figure {
   padding: 0;
   margin: 0 0 15px 1%;
   list-style: none;
-  min-height: 400px;
+  min-height: 320px;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -959,7 +959,7 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 #fh5co-portfolio-list li a {
-  min-height: 400px;
+  min-height: 320px;
   padding: 2em;
   position: relative;
   width: 100%;

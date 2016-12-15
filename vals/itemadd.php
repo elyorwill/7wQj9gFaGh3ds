@@ -20,7 +20,7 @@ if(isset($_POST['submitpost'])){
 
     $itemstatus = $_POST['submitpost'];
 
-    $ownerid = mysqli_real_escape_string($connecDB,$_POST['ownerid']);
+    $hostid = mysqli_real_escape_string($connecDB,$_POST['hostid']);
 
     $itemname = mysqli_real_escape_string($connecDB,$_POST['itemname']);
     $hometype = mysqli_real_escape_string($connecDB,$_POST['hometype']);
@@ -58,8 +58,8 @@ if(isset($_POST['submitpost'])){
         $itemurl = trim(preg_replace('/-+/', '-', $prurl), '-');
 
         //insert item
-        $prSQL = "INSERT INTO item(ownerid, title, url, category, hometype, roomtype, accommodate, bedrooms, bathrooms, amenities, info, status, postdate, postip)
-                values($ownerid, '$itemname', '$prurl', '$category', '$hometype', '$roomtype', $accommodate, $bedrooms, $bathroomms, '$amenities', '$description', $itemstatus, now(), '$ipaddress')";
+        $prSQL = "INSERT INTO item(hostid, title, url, category, hometype, roomtype, accommodate, bedrooms, bathrooms, amenities, info, status, postdate, postip)
+                values($hostid, '$itemname', '$prurl', '$category', '$hometype', '$roomtype', $accommodate, $bedrooms, $bathroomms, '$amenities', '$description', $itemstatus, now(), '$ipaddress')";
         $prQuery = mysqli_query($connecDB,$prSQL);
 
         $itemid = mysqli_insert_id($connecDB);

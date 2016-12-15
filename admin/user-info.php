@@ -60,13 +60,20 @@ else if(isset($_GET['photo'])){
 
   $activeusernavphoto='active';
   $userdetailscol .= '<div class="panel panel-default">
-          <div class="panel-heading">
-              <h3 class="panel-title">Logo / Image</h3>
-          </div>
-          <div class="panel-body">
-          <img src="'.$userphotoandpath.'" />
-          </div>
-      </div>';
+                          <div class="panel-heading">
+                              <h3 class="panel-title">Logo / Image</h3>
+                          </div>
+                          <div class="panel-body">
+                          <div class="col-md-6"><img src="'.$userphotoandpath.'" /></div>
+                          <div class="col-md-6">
+                          <form enctype="multipart/form-data">
+                          <label>Add new Photo</label>
+                          <input  class="form-control" type="file">
+                          <button  class="form-control btn btn-primary">Upload</button>
+                          </form>
+                          </div>
+                          </div>
+                      </div>';
 }
 else if(isset($_GET['loginlogs'])){
   $activeusernavloginlogs='active';

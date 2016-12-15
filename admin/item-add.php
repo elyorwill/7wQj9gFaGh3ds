@@ -25,7 +25,7 @@ $itemcategories .= '</select>';
 
 //users
 $userslistquery = mysqli_query($connecDB,"select * from user");
-$userslists = '<select name="ownerid" required class="form-control"><option value="">- Choose -</option>';
+$userslists = '<select name="hostid" required class="form-control"><option value="">- Choose -</option>';
 while($usersrow = mysqli_fetch_array($userslistquery)){
   $userslists .= '<option value="'.$usersrow['id'].'">'.$usersrow['fullname'].'</option>';
 }
@@ -48,7 +48,7 @@ while($latestitemrow = mysqli_fetch_array($latestitemquery)){
   $latestitemlist .='<td>'.$latestitemrow['title'].'</td>';
   $latestitemlist .='<td>'.$latestitemrow['category'].'</td>';
   $latestitemlist .='<td>'.$latestitemrow['postdate'].'</td>';
-  $latestitemlist .='<td>'.$latestitemrow['ownerid'].'</td>';
+  $latestitemlist .='<td>'.$latestitemrow['hostid'].'</td>';
   $latestitemlist .='</tr>';
 }
  ?>
@@ -95,7 +95,7 @@ while($latestitemrow = mysqli_fetch_array($latestitemquery)){
                     <div class="col-sm-12">
                       <div class="form-group">
                          <a class="pull-right" href="user-add.php">+ Add new user</a>
-                        <label>Listing owner *</label>
+                        <label>Host *</label>
                         <?php
                         echo $userslists;
                          ?>
@@ -385,7 +385,7 @@ while($latestitemrow = mysqli_fetch_array($latestitemquery)){
                                   <th>Title</th>
                                   <th>Category</th>
                                   <th>Postdate</th>
-                                  <th>Owner ID</th>
+                                  <th>Host ID</th>
                               </tr>
                           </thead>
                           <tbody>
