@@ -11,7 +11,7 @@ if(session_id() == '') {
 }
 
 
-$_SESSION['shomeurl'] = 'http://localhost/rentmarket/7wQj9gFaGh3ds';
+$_SESSION['shomeurl'] = 'http://192.168.0.7/rentmarket/7wQj9gFaGh3ds';
 
 // if(!isset($loginpage)){
 //   if(!isset($_SESSION['onlineadminid'])){
@@ -26,7 +26,7 @@ if (strpos($currenturl,'7wQj9gFaGh3ds') !== false) {
   //offline
   $db_username = 'root';
   $db_password = '';
-  $db_name = 'rentmarket';
+  $db_name = 'rentmarket1';
   $db_host = 'localhost';
   $connecDB = mysqli_connect($db_host, $db_username, $db_password, $db_name) or die('could not connect to database');
 } else {
