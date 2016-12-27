@@ -22,7 +22,7 @@ if (strpos($currenturl,'7wQj9gFaGh3ds') !== false) {
   $db_host = 'localhost';
   $connecDB = mysqli_connect($db_host, $db_username, $db_password, $db_name) or die('could not connect to database');
 } else {
-  $homeurl = 'http://rmdeploy.ap-southeast-1.elasticbeanstalk.com/';
+  $homeurl = 'http://rmdeploy.ap-southeast-1.elasticbeanstalk.com';
   //AWS online
   $db_username = $_SERVER['RDS_USERNAME'];
   $db_password = $_SERVER['RDS_PASSWORD'];
