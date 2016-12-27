@@ -11,7 +11,7 @@ if(session_id() == '') {
 }
 
 
-$homeurl = 'localhost/rentmarket/7wQj9gFaGh3ds/client';
+$homeurl = 'http://rmdeploy.ap-southeast-1.elasticbeanstalk.com/';
 
 $_SESSION['shomeurl']=$homeurl;
 
