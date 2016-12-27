@@ -9,7 +9,7 @@ include_once '../inc/configAll.php';
 $_SESSION['rdrlocation'] = $currenturl;
 
 if(isset($_SESSION['onlineadminid']))
-header('location: index');
+header('location: index.php');
 
  ?>
 <html>
