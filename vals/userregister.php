@@ -13,7 +13,7 @@ if(isset($_SESSION['rdrlocation'])){
   $rdrlocation = $_SESSION['rdrlocation'];
 }
 else {
-  $rdrlocation = '../register.php';
+  $rdrlocation = $homeurl.'/register.php';
 }
 
 
@@ -93,9 +93,13 @@ if(mysqli_num_rows($checkexistemail) < 1){
 
   }// if no avatar
 
+  include '../inc/generateusername.php';
+
+  $username = random_username($fullname);
+
   //insert user into database
-  $regsql = "INSERT INTO user(fullname, email, phone, photo, description, regdate, regip, status)
-                            values('$fullname', '$email', '$phone', '$userimage', '$description', now(), '$ipaddress', 0)";
+  $regsql = "INSERT INTO user(username, fullname, email, phone, photo, description, regdate, regip, status)
+                            values('$username','$fullname', '$email', '$phone', '$userimage', '$description', now(), '$ipaddress', 0)";
 
   $userqueryrun = mysqli_query($connecDB,$regsql);
   if($userqueryrun){
@@ -109,7 +113,7 @@ if(mysqli_num_rows($checkexistemail) < 1){
 $newuserid = mysqli_insert_id($connecDB);
 $activationcode = uniqid(rand());
 
-$adduseractivationquery = mysqli_query("insert into useractivation(userid, activationcode, sentdate) values($newuserid, '$activationcode', now())");
+$adduseractivationquery = mysqli_query($connecDB,"insert into useractivation(userid, activationcode, sentdate) values($newuserid, '$activationcode', now())");
 
 if($adduseractivationquery){
   $from = $rmnoreplyemail;
@@ -138,18 +142,21 @@ EMAIL;
 
   $sendactivation = mail($to, $subject, $messagebody, $header);
   if($sendactivation){
-    $_SESSION['rmnotfymsg'] = '<p  class="alert alert-success">You have successfully registered. Please check your email for verification link</p>';
+    $_SESSION['rmnotfymsg'] = '<p class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    You have successfully registered. Please check your email for verification link</p>';
     header('location: '.$rdrlocation);
   }
   else{
-    $_SESSION['rmnotfymsg'] = '<p  class="alert alert-warning">You have registered and activation code is generated, but failed to send email. Please contact us to activate manually</p>';
+    $_SESSION['rmnotfymsg'] = '<p class="alert alert-warning"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    You have registered and activation code is generated, but failed to send email. Please contact us to activate manually</p>';
     header('location: '.$rdrlocation);
   }
 
 }
 else{
 
-  $_SESSION['rmnotfymsg'] = '<p  class="alert alert-warning">You have registered but failed to generate and send activation link. Please contact us to activate manually</p>';
+  $_SESSION['rmnotfymsg'] = '<p class="alert alert-warning"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  You have registered but failed to generate and send activation link. Please contact us to activate manually</p>';
   header('location: '.$rdrlocation);
 
 }
@@ -168,7 +175,8 @@ else{
 
 }//if email does not exist
 else{
-  $_SESSION['rmnotfymsg'] = '<p  class="alert alert-danger">'.$email.' is already registered.</p>';
+  $_SESSION['rmnotfymsg'] = '<p  class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  '.$email.' is already registered.</p>';
   header('location: '.$rdrlocation);
 }
 

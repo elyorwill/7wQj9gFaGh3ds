@@ -27,6 +27,7 @@ while($itemrow = mysqli_fetch_array($itemquery)){
                           <h2>'.$itemrow['currency'].''.$itemrow['price'].' '.$itemrow['pricemode'].'</h2>
                       </div>
                     </a>
+                    <h4>'.$itemrow['title'].'</h4>
                   </li>';
 }
 $listcollect .= '</ul>';

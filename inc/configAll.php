@@ -11,7 +11,9 @@ if(session_id() == '') {
 }
 
 
-$_SESSION['shomeurl'] = 'http://192.168.0.7/rentmarket/7wQj9gFaGh3ds';
+$homeurl = 'localhost/rentmarket/7wQj9gFaGh3ds/client';
+
+$_SESSION['shomeurl']=$homeurl;
 
 // if(!isset($loginpage)){
 //   if(!isset($_SESSION['onlineadminid'])){

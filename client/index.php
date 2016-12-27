@@ -1,0 +1,243 @@
+<?php
+
+
+session_start();
+
+include_once '../inc/configAll.php';
+
+$itemsql = "select i.id, i.title, p.pricecurrency as currency, p.priceoriginal as price, p.pricemode,
+            i.category, i.hometype, i.roomtype, i.accommodate, i.bedrooms, i.bathrooms, u.fullname, i.postdate,
+            u.id as uid, ph.photo as itemcover, count(ph.id) as totalphotos, MIN(ph.sortnum) as minsortnum
+            from item i
+            left join user u on i.hostid = u.id
+            left join itemprice p on i.id = p.listid
+            left join itemlocation l on i.id = l.listid
+            left join itemphotos ph on i.id = ph.itemid and ph.sortnum = (select sortnum from itemphotos where itemid = i.id order by sortnum limit 1)
+            group by i.id
+            order by i.postdate desc
+						limit 8";
+
+$itemquery = mysqli_query($connecDB,$itemsql);
+
+$listcollect = '';
+
+while($itemrow = mysqli_fetch_array($itemquery)){
+	$listcollect .= '<div class="col-md-3 productdetails">
+		<a href="#"><img clas="cover" src="../uploads/items/'.$itemrow['id'].'/grid/'.$itemrow['itemcover'].'"/></a>
+		<a href="#" class="title">'.$itemrow['title'].'</a>
+		<p class="price">'.$itemrow['currency'].''.$itemrow['price'].' '.$itemrow['pricemode'].'</p>
+		<p class="ratings">*****</p>
+	</div>';
+}
+$listcollect .= '';
+
+ ?>
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Rentmarket</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="Elyor" />
+
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+
+	<div class="fh5co-loader"></div>
+
+	<div id="page">
+		<?php
+		include_once 'inc/nav.php';
+		 ?>
+
+	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/img_bg_2.jpg);" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<div class="display-t">
+						<div class="display-tc animate-box" data-animate-effect="fadeIn">
+							<form>
+								<div class="form-group">
+									<label class="checkbox-inline">
+									  <input type="radio" name="category" value="option1"> Living Space
+									</label>
+									<label class="checkbox-inline">
+									  <input type="radio" name="category" value="option2"> Working Space
+									</label>
+									<label class="checkbox-inline">
+									  <input type="radio" name="category" value="option3"> Leasure Space
+									</label>
+							  </div>
+
+                                <div class="hidden">
+                                <div class="col-md-1">
+                                <p class="checkinoutlbl">CHECK IN</p>
+                                </div>
+                                <div class="col-md-4">
+                                <input type="date" >
+                                </div>
+                                <div class="col-md-1">
+                                <p class="checkinoutlbl">CHECK OUT</p>
+                                </div>
+                                <div class="col-md-4">
+                                <input type="date" >
+                                </div>
+                                <div class="col-md-2">
+                                <button>Search</button>
+                                </div>
+                                </div>
+
+                                <div class="input-group stylish-input-group">
+                                    <input type="text" class="form-control"  placeholder="Search" >
+                                    <span class="input-group-addon">
+                                        <button type="submit">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                    <a style="font-size: 12px;" class="pull-right" href="#">More options <i style="font-size: 8px;" class="glyphicon glyphicon-chevron-down"></i></a>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div id="fh5co-services" class="fh5co-bg-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 text-center animate-box">
+					<div class="services">
+						<span><img class="img-responsive" src="images/dumbbell.svg" alt=""></span>
+						<h3>Living Space</h3>
+						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius</p>
+						<p><a href="#" class="btn btn-primary btn-outline btn-sm">View <i class="icon-arrow-right"></i></a></p>
+					</div>
+				</div>
+				<div class="col-md-4 text-center animate-box">
+					<div class="services">
+						<span><img class="img-responsive" src="images/exercise.svg" alt=""></span>
+						<h3>Working Space</h3>
+						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius</p>
+						<p><a href="#" class="btn btn-primary btn-outline btn-sm">View <i class="icon-arrow-right"></i></a></p>
+					</div>
+				</div>
+				<div class="col-md-4 text-center animate-box">
+					<div class="services">
+						<span><img class="img-responsive" src="images/yoga-carpet.svg" alt=""></span>
+						<h3>Leasure Space</h3>
+						<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius</p>
+						<p><a href="#" class="btn btn-primary btn-outline btn-sm">View <i class="icon-arrow-right"></i></a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<div class="row">
+	<div class="products">
+    <div class="col-md-12"><h2>Recommeded</h2></div>
+		<?php
+		echo $listcollect;
+		 ?>
+	</div>
+</div>
+
+
+
+
+	<div id="fh5co-started" class="fh5co-bg" style="background-image: url(images/img_bg_3.jpg);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<h2>Rent your space <br> <span> It is free and always will be</span></h2>
+				</div>
+			</div>
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<p><a href="#" class="btn btn-default btn-lg">Become a Host</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<?php
+	include_once 'inc/footer.php';
+	 ?>
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Stellar Parallax -->
+	<script src="js/jquery.stellar.min.js"></script>
+	<!-- Carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- countTo -->
+	<script src="js/jquery.countTo.js"></script>
+	<!-- Magnific Popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/magnific-popup-options.js"></script>
+	<!-- Main -->
+	<script src="js/main.js"></script>
+
+
+
+	</body>
+</html>
