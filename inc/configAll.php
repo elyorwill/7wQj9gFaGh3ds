@@ -11,20 +11,10 @@ if(session_id() == '') {
 }
 
 
-$homeurl = 'http://rmdeploy.ap-southeast-1.elasticbeanstalk.com/';
-
-$_SESSION['shomeurl']=$homeurl;
-
-// if(!isset($loginpage)){
-//   if(!isset($_SESSION['onlineadminid'])){
-//     $_SESSION['rmnotfymsg'] = "Please login to continue";
-//     header('location: '.$_SESSION['shomeurl'].'/login.php');
-//   }
-// }
-
 $currenturl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
 if (strpos($currenturl,'7wQj9gFaGh3ds') !== false) {
+  $homeurl = 'localhost/rentmarket/7wQj9gFaGh3ds/client';
   //offline
   $db_username = 'root';
   $db_password = '';
@@ -32,6 +22,7 @@ if (strpos($currenturl,'7wQj9gFaGh3ds') !== false) {
   $db_host = 'localhost';
   $connecDB = mysqli_connect($db_host, $db_username, $db_password, $db_name) or die('could not connect to database');
 } else {
+  $homeurl = 'http://rmdeploy.ap-southeast-1.elasticbeanstalk.com/';
   //AWS online
   $db_username = $_SERVER['RDS_USERNAME'];
   $db_password = $_SERVER['RDS_PASSWORD'];
@@ -41,7 +32,7 @@ if (strpos($currenturl,'7wQj9gFaGh3ds') !== false) {
 
   $connecDB = mysqli_connect($db_host, $db_username, $db_password, $db_name,$db_port) or die('could not connect to database');
 }
-
+$_SESSION['shomeurl']=$homeurl;
 
 
 
