@@ -1,11 +1,11 @@
 <?php
 
-if(!isset($loginpage)){
-  if(!isset($_SESSION['onlineadminid'])){
-    $_SESSION['rmnotfymsg'] = '<p class="alert alert-danger">Login to continue</p>';
-    header('location: '.$_SESSION['shomeurl'].'/admin/login.php');
-  }
-}
+// if(!isset($loginpage)){
+//   if(!isset($_SESSION['onlineadminid'])){
+//     $_SESSION['rmnotfymsg'] = '<p class="alert alert-danger">Login to continue</p>';
+//     header('location: '.$_SESSION['shomeurl'].'/admin/login.php');
+//   }
+// }
 
  ?>
 <!DOCTYPE html>
