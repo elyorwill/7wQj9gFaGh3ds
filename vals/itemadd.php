@@ -13,7 +13,7 @@ if(isset($_SESSION['rdrlocation'])){
   $rdrlocation = $_SESSION['rdrlocation'];
 }
 else {
-  $rdrlocation = '../item-add.php';
+  $rdrlocation = '../client/';
 }
 
 if(isset($_POST['submitpost'])){
