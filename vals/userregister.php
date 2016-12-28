@@ -115,6 +115,8 @@ $activationcode = uniqid(rand());
 
 $adduseractivationquery = mysqli_query($connecDB,"insert into useractivation(userid, activationcode, sentdate) values($newuserid, '$activationcode', now())");
 
+$verificationlink = $homeurl.'/confirm-email.php?email='.$email.'&code='.$verificationlink;
+
 if($adduseractivationquery){
   $from = $rmnoreplyemail;
   $subject = "Verify your email with Rentmarket";

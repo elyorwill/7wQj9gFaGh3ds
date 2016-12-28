@@ -3,7 +3,7 @@
 
     <script src="assets/plugins/bootstrap-typehead/typeahead.bundle.min.js"></script>
     <script src="assets/plugins/bootstrap-typehead/typeahead.jquery.min.js"></script>
- 
+
 
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="pages/js/pages.min.js"></script>
@@ -11,7 +11,7 @@
     <!-- BEGIN PAGE LEVEL JS -->
     <script src="assets/js/form_elements.js" type="text/javascript"></script>
     <script src="assets/js/scripts.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL JS -->   
+    <!-- END PAGE LEVEL JS -->
 <!-- BEGIN SLIDER DEPENDENCIES -->
     <script type="text/javascript" src="assets/plugins/swiper/js/swiper.jquery.min.js"></script>
     <script type="text/javascript" src="assets/plugins/velocity/velocity.min.js"></script>
@@ -35,7 +35,7 @@
     <script type="text/javascript" src="assets/js/custom.js"></script>
     <!-- END PAGES LIB -->
 
-    <!-- CALENDAR -->
+    <!-- CALENDAR -
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -52,7 +52,7 @@
       } );
     </script>
 
-    <!-- JS SLIDER -->
+    - JS SLIDER -->
     <!-- script src="assets/js-slider/jquery-1.12.3.min.js"></script -->
     <script src="assets/js-slider/ion.rangeSlider.js"></script>
     <script>
@@ -107,10 +107,11 @@
         });
     </script>
 
-    <!-- wysiwyg summernote 
+    <!-- wysiwyg summernote
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
+    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> -->
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
     <script>
