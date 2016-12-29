@@ -19,16 +19,16 @@ if(isset($_GET['deleteitem'])){
   if($deleterates){
       $deleteuser = mysqli_query($connecDB,"delete from item where id = $itemid");
       if($deleteuser){
-        $_SESSION['notfymsg'] = '<p  class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'.$itemtitle.' is successfully deleted</p>';
+        $_SESSION['notfymsg'] = '<p class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'.$itemtitle.' is successfully deleted</p>';
         header('location: ../items.php');
       }
       else{
-        $_SESSION['notfymsg'] = '<p  class="alert alert-warning"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Failed to delete post, but ratings are deleted!</p>';
+        $_SESSION['notfymsg'] = '<p class="alert alert-warning"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Failed to delete post, but ratings are deleted!</p>';
         header('location: '.$rdrlocation);
       }
   }
   else{
-    $_SESSION['notfymsg'] = '<p  class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Failed to delete user!</p>';
+    $_SESSION['notfymsg'] = '<p class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Failed to delete user!</p>';
     header('location: '.$rdrlocation);
   }
 }

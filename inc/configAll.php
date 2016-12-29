@@ -14,7 +14,7 @@ if(session_id() == '') {
 $currenturl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
 if (strpos($currenturl,'7wQj9gFaGh3ds') !== false) {
-  $homeurl = 'localhost/rentmarket/7wQj9gFaGh3ds/client';
+  $homeurl = 'http://localhost/rentmarket/7wQj9gFaGh3ds';
   //offline
   $db_username = 'root';
   $db_password = '';

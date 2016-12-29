@@ -53,7 +53,7 @@ else if(isset($_GET['photos'])){
 
   $itemphotosquery = mysqli_query($connecDB,"select * from itemphotos where itemid = $itemid order by sortnum");
 
-  $itemphotoandpath = $_SESSION['shomeurl'].'/uploads/items/'.$itemid.'/';
+  $itemphotoandpath = $homeurl.'/uploads/items/'.$itemid.'/';
 
   $userdetailscol .= '<div class="panel panel-default">
           <div class="panel-heading">
@@ -131,7 +131,7 @@ else{
                 <tr><td>Description:</td><td>'.$iteminfo['info'].'</td><td><a href="#">Edit</a></td></tr>
                 <tr><td>Posted date:</td><td>'.$iteminfo['postdate'].'</td><td></td></tr>
                 <tr><td>Posted IP:</td><td>'.$iteminfo['postip'].'</td><td></td></tr>
-                <tr><td colspan="3"><a href="../vals/itemmodify.php?deleteitem='.$iteminfo['id'].'&title='.$iteminfo['title'].'" class="text text-danger" onclick="return confirm(\'Are you sure you want to delete '.$iteminfo['title'].'?\');"><i class="fa fa-times"></i> Delete Listing</a></td></tr>
+                <tr><td colspan="3"><a href="../vals/itemmodify.php?deleteitem='.$itemid.'&title='.$iteminfo['title'].'" class="text text-danger" onclick="return confirm(\'Are you sure you want to delete '.$iteminfo['title'].'?\');"><i class="fa fa-times"></i> Delete Listing</a></td></tr>
               </table>
           </div>
       </div>';
