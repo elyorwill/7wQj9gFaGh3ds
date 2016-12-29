@@ -99,6 +99,10 @@ else {
 
                 <div class="row">
                     <div class="col-lg-12">
+                      <?php
+                      echo $notficationmsg;
+                       ?>
+                       
                       <a href="item-add.php" class="pull-right btn btn-success btn-xs">+ Add new listing</a>
                       <label>
                         <select class="btn btn-xs" onchange="location = this.value;">
