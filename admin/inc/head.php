@@ -19,7 +19,7 @@ if(!isset($loginpage)){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin v2.5</title>
+    <title>Admin v2</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">

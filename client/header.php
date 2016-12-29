@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
-    <title>Rent Market</title>
+    <title>Rent Market v2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="apple-touch-icon" href="pages/ico/60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="pages/ico/76.png">
@@ -34,7 +34,7 @@
     <script src="asset/plugin/classie/classie.js" type="text/javascript"></script>
     <!-- script src="asset/plugin/jquery/jquery-1.11.1.min.js" type="text/javascript"></script -->
 
-    <!-- CALENDAR 
+    <!-- CALENDAR
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
