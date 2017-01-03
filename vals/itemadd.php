@@ -76,16 +76,20 @@ if(isset($_POST['submitpost'])){
                               values($itemid, '$longitude', '$latitude', '$address', $postcode, '$city', '$country')";
           mysqli_query($connecDB,$itemlocationsql);
 
+          if (!is_dir('../../uploads/items')) {
+              mkdir('../../uploads/item', 0777, true);
+          }
+
           //create image folders
-          $itemimgpathoriginal = "../uploads/items/".$itemid."/original";
+          $itemimgpathoriginal = "../../uploads/items/".$itemid."/original";
           if (!is_dir($itemimgpathoriginal)) {
               mkdir($itemimgpathoriginal, 0777, true);
           }
-          $itemimgpathgrid = "../uploads/items/".$itemid."/grid";
+          $itemimgpathgrid = "../../uploads/items/".$itemid."/grid";
           if (!is_dir($itemimgpathgrid)) {
               mkdir($itemimgpathgrid, 0777, true);
           }
-          $itemimgpathfull = "../uploads/items/".$itemid."/full";
+          $itemimgpathfull = "../../uploads/items/".$itemid."/full";
           if (!is_dir($itemimgpathfull)) {
               mkdir($itemimgpathfull, 0777, true);
           }
