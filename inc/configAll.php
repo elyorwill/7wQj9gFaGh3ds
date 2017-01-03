@@ -14,12 +14,12 @@ if(session_id() == '') {
 $currenturl = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
 if (strpos($currenturl,'7wQj9gFaGh3ds') !== false) {
-  $homeurl = 'localhost/rentmarket/7wQj9gFaGh3ds/client';
+  $homeurl = 'localhost/RM%20git/client/';
   //offline
   $db_username = 'root';
-  $db_password = '';
+  $db_password = 'root';
   $db_name = 'rentmarket1';
-  $db_host = 'localhost';
+  $db_host = 'localhost:8888';
   $connecDB = mysqli_connect($db_host, $db_username, $db_password, $db_name) or die('could not connect to database');
 } else {
   $homeurl = 'http://rmdeploy.ap-southeast-1.elasticbeanstalk.com';

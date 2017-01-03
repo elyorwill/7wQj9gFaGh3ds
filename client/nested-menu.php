@@ -15,16 +15,19 @@
                     <a href="dashboard.php" data-text="dashboard" class="active">Dashboard </a>
                   </li>
                   <li>
-                    <a href="inbox.php" data-text="Pricing">Inbox </a>
+                    <a href="inbox.php" data-text="inbox">Inbox </a>
                   </li>
                   <li>
-                    <a href="listing.php" data-text="Portfolio">Listings </a>
+                    <a href="listing.php" data-text="listing">Listings </a>
                   </li>
                   <li>
-                    <a href="trip.php" data-text="Contact Us">Your Trips</a>
+                    <a href="listing-new.php" data-text="add-listing">Add New Listing</a>
                   </li>
                   <li>
-                    <a href="edit-profile.php" data-text="Contact Us">Settings</a>
+                    <a href="trip.php" data-text="trips">Your Trips</a>
+                  </li>
+                  <li>
+                    <a href="edit-profile.php" data-text="setting">Settings</a>
                   </li>
                 </ul>
               </div>

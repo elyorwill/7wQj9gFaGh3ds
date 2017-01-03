@@ -76,10 +76,10 @@
 <hr>
 <!-- BEGIN about -->
 <section>
-  <div class="container side-padding m-t-50">
+  <div class="container side-padding m-t-50" >
     <div class="row">
       <div class="col-md-7">
-        <div class="row m-b-20" style="margin-top: -20px;">
+        <div class="row m-b-20">
           <h6 class="block-title" style="margin-bottom: -20px;">About the space</h6>
           <table class="table" style="width: 80%">
                   <thead>
