@@ -25,7 +25,7 @@ if ($divcount%3 == 1){
      $listcollect .= '<div class="feature-slider">';
 }
   $listcollect .= '<div class="col-md-4 type-section">
-                  <img src="../uploads/items/'.$itemrow['id'].'/grid/'.$itemrow['itemcover'].'">
+                  <img src="https://s3-ap-southeast-1.amazonaws.com/images.rentmarket.my/uploads/items/'.$itemrow['id'].'/grid/'.$itemrow['itemcover'].'">
                   <div class="bottom-detail">
                     <div class="row m-b-0">
                       <h4 class="">'.$itemrow['title'].'</h4>

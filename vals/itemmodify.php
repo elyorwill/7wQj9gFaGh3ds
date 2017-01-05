@@ -10,6 +10,9 @@ else {
   $rdrlocation = '../items';
 }
 
+$errorupimgs=0;
+
+require '../aws-app/start.php';
 
 if(isset($_GET['deleteitem'])){
   $itemid = $_GET['deleteitem'];
@@ -18,50 +21,52 @@ if(isset($_GET['deleteitem'])){
   $deletelocation = mysqli_query($connecDB,"delete from itemlocation where listid = $itemid");
   if($deletelocation){
 
-
-
-
-
     $getimagesq = mysqli_query($connecDB,"select * from itemphotos where itemid = $itemid");
     while($getimagesw = mysqli_fetch_array($getimagesq)){
-      if(file_exists('../uploads/items/'.$itemid.'/original/'.$getimagesw['photo'])){
-        unlink('../uploads/items/'.$itemid.'/original/'.$getimagesw['photo']);
+      $itemsinphoto = $getimagesw['photo'];
+      try {
+        $s3-> deleteObject([
+          'Bucket' => $config['s3']['bucket'],
+          'Key' => "uploads/items/{$itemid}/original/{$itemsinphoto}"
+        ]);
+      } catch (S3Exception $e) {
+        $errorupimgs++;
       }
-      if(file_exists('../uploads/items/'.$itemid.'/full/'.$getimagesw['photo'])){
-        unlink('../uploads/items/'.$itemid.'/full/'.$getimagesw['photo']);
-      }
-      if(file_exists('../uploads/items/'.$itemid.'/grid/'.$getimagesw['photo'])){
-        unlink('../uploads/items/'.$itemid.'/grid/'.$getimagesw['photo']);
-      }
-    }
 
-    if(is_dir('../uploads/items/'.$itemid.'/original')){
-      rmdir('../uploads/items/'.$itemid.'/original');
-    }
-    if(is_dir('../uploads/items/'.$itemid.'/full')){
-      rmdir('../uploads/items/'.$itemid.'/full');
-    }
-    if(is_dir('../uploads/items/'.$itemid.'/grid')){
-      rmdir('../uploads/items/'.$itemid.'/grid');
-    }
-    if(is_dir('../uploads/items/'.$itemid.'')){
-      rmdir('../uploads/items/'.$itemid.'');
+      try {
+        $s3-> deleteObject([
+          'Bucket' => $config['s3']['bucket'],
+          'Key' => "uploads/items/{$itemid}/full/{$itemsinphoto}"
+        ]);
+      } catch (S3Exception $e) {
+        $errorupimgs++;
+      }
+
+      try {
+        $s3-> deleteObject([
+          'Bucket' => $config['s3']['bucket'],
+          'Key' => "uploads/items/{$itemid}/grid/{$itemsinphoto}"
+        ]);
+      } catch (S3Exception $e) {
+        $errorupimgs++;
+      }
+
     }
 
     $deletephotos = mysqli_query($connecDB,"delete from itemphotos where itemid = $itemid");
     if($deletephotos){
       $deleteuser = mysqli_query($connecDB,"delete from item where id = $itemid");
       if($deleteuser){
-        $_SESSION['rmnotfymsg'] = '<p class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'.$itemtitle.' is successfully deleted</p>';
+        $_SESSION['rmnotfymsg'] = '<p class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'.$itemtitle.' is successfully deleted<br>'.$errorupimgs.' images failed</p>';
         header('location: ../admin/items.php');
       }
       else{
-        $_SESSION['rmnotfymsg'] = '<p class="alert alert-warning"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Failed to delete lising, but location and photos are deleted!</p>';
+        $_SESSION['rmnotfymsg'] = '<p class="alert alert-warning"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Failed to delete lising, but location and photos are deleted!<br>'.$errorupimgs.' images failed</p>';
         header('location: '.$rdrlocation);
       }
     }// delete photos
     else {
-      $_SESSION['rmnotfymsg'] = '<p class="alert alert-warning"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Failed to listing and photos, but location is deleted.</p>';
+      $_SESSION['rmnotfymsg'] = '<p class="alert alert-warning"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Failed to listing and photos, but location is deleted.<br>'.$errorupimgs.' images failed</p>';
       header('location: '.$rdrlocation);
     }
   }// delete location

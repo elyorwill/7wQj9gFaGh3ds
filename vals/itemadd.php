@@ -85,20 +85,6 @@ if(isset($_POST['submitpost'])){
                               values($itemid, '$longitude', '$latitude', '$address', $postcode, '$city', '$country')";
           mysqli_query($connecDB,$itemlocationsql);
 
-          // //create image folders
-          // $itemimgpathoriginal = "../uploads/items/".$itemid."/original";
-          // if (!is_dir($itemimgpathoriginal)) {
-          //     mkdir($itemimgpathoriginal, 0777, true);
-          // }
-          // $itemimgpathgrid = "../uploads/items/".$itemid."/grid";
-          // if (!is_dir($itemimgpathgrid)) {
-          //     mkdir($itemimgpathgrid, 0777, true);
-          // }
-          // $itemimgpathfull = "../uploads/items/".$itemid."/full";
-          // if (!is_dir($itemimgpathfull)) {
-          //     mkdir($itemimgpathfull, 0777, true);
-          // }
-          //end of create image folders
 
         include('resizeimage2.php');
 
@@ -117,9 +103,6 @@ if(isset($_POST['submitpost'])){
 
           //Make sure we have a filepath
           if ($tmpFilePath != ""){
-            //Setup our new file path
-            //$newFilePath = "./uploadFiles/" . $_FILES['upload']['name'][$i];
-
             if($type == "image/jpeg" || $type == "image/jpg" || $type == "image/png" || $type == "image/gif" || $type == "image/pjpeg" || $type == "image/x-png"){
                 if($size <=4288608){
 

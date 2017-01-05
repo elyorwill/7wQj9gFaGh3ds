@@ -53,7 +53,7 @@ else if(isset($_GET['photos'])){
 
   $itemphotosquery = mysqli_query($connecDB,"select * from itemphotos where itemid = $itemid order by sortnum");
 
-  $itemphotoandpath = $homeurl.'/uploads/items/'.$itemid.'/';
+  $itemphotoandpath = 'https://s3-ap-southeast-1.amazonaws.com/images.rentmarket.my/uploads/items/'.$itemid.'/';
 
   $userdetailscol .= '<div class="panel panel-default">
           <div class="panel-heading">
