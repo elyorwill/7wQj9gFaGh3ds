@@ -8,7 +8,7 @@
 session_start();
 include"../inc/configAll.php";
 
-// ini_set('max_execution_time', 300);
+ini_set('max_execution_time', 300);
 
 if(isset($_SESSION['rdrlocation'])){
   $rdrlocation = $_SESSION['rdrlocation'];
