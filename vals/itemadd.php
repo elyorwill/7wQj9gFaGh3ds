@@ -18,6 +18,8 @@ else {
 
 if(isset($_POST['submitpost'])){
 
+    require '../aws-app/start.php';
+
     $itemstatus = $_POST['submitpost'];
 
     $hostid = mysqli_real_escape_string($connecDB,$_POST['hostid']);
@@ -42,9 +44,15 @@ if(isset($_POST['submitpost'])){
 
     $category = mysqli_real_escape_string($connecDB,$_POST['category']);
 
+    if(!empty($_POST['amenity']))
     $amenities = implode(", ", $_POST['amenity']);
+    else
+    $amenities='';
 
     $ipaddress = $_SERVER['REMOTE_ADDR'];
+
+    $successupimgs=0;
+    $errorupimgs=0;
 
     if(count($_FILES['upload']['name']) > 0){
 
@@ -76,22 +84,23 @@ if(isset($_POST['submitpost'])){
                               values($itemid, '$longitude', '$latitude', '$address', $postcode, '$city', '$country')";
           mysqli_query($connecDB,$itemlocationsql);
 
-          //create image folders
-          $itemimgpathoriginal = "../uploads/items/".$itemid."/original";
-          if (!is_dir($itemimgpathoriginal)) {
-              mkdir($itemimgpathoriginal, 0777, true);
-          }
-          $itemimgpathgrid = "../uploads/items/".$itemid."/grid";
-          if (!is_dir($itemimgpathgrid)) {
-              mkdir($itemimgpathgrid, 0777, true);
-          }
-          $itemimgpathfull = "../uploads/items/".$itemid."/full";
-          if (!is_dir($itemimgpathfull)) {
-              mkdir($itemimgpathfull, 0777, true);
-          }
+          // //create image folders
+          // $itemimgpathoriginal = "../uploads/items/".$itemid."/original";
+          // if (!is_dir($itemimgpathoriginal)) {
+          //     mkdir($itemimgpathoriginal, 0777, true);
+          // }
+          // $itemimgpathgrid = "../uploads/items/".$itemid."/grid";
+          // if (!is_dir($itemimgpathgrid)) {
+          //     mkdir($itemimgpathgrid, 0777, true);
+          // }
+          // $itemimgpathfull = "../uploads/items/".$itemid."/full";
+          // if (!is_dir($itemimgpathfull)) {
+          //     mkdir($itemimgpathfull, 0777, true);
+          // }
           //end of create image folders
 
         include('resizeimage2.php');
+
 
             // Loop through each file
         for($i=0; $i<$total; $i++) {
@@ -101,8 +110,9 @@ if(isset($_POST['submitpost'])){
         $size = $_FILES['upload']['size'][$i];
         $error = $_FILES['upload']['error'][$i];
 
-          //Get the temp file path
-          $tmpFilePath = $_FILES['upload']['tmp_name'][$i];
+        //Get the temp file path
+        $tmpFilePath = $_FILES['upload']['tmp_name'][$i];
+
 
           //Make sure we have a filepath
           if ($tmpFilePath != ""){
@@ -112,45 +122,92 @@ if(isset($_POST['submitpost'])){
             if($type == "image/jpeg" || $type == "image/jpg" || $type == "image/png" || $type == "image/gif" || $type == "image/pjpeg" || $type == "image/x-png"){
                 if($size <=4288608){
 
-                    $str2 = strstr($_FILES['upload']['type'][$i], "/");
-                    $str4 = substr($str2, 0,1);
-                    $itype = str_replace($str4, ".",$str2);
-                    $primage = uniqid(rand()).$itype;// image
+                  //file details
+                  $extension = explode('.', $name);
+                  $extension = strtolower(end($extension));
 
+                  //Tmp details
+                  $key = uniqid(rand());
+                  $tmp_file_name = "{$key}.{$extension}";
+                  $tmp_file_path = "../temp/{$tmp_file_name}";
 
-                    $newFilePath = $itemimgpathoriginal."/".$primage;
+                    if(move_uploaded_file($tmpFilePath, $tmp_file_path)){
 
-                    if(move_uploaded_file($tmpFilePath, $newFilePath)){
-
-                        $addimgQuery = mysqli_query($connecDB, "insert into itemphotos(itemid, photo, sortnum) values('$itemid', '$primage', 1)");
+                        $addimgQuery = mysqli_query($connecDB, "insert into itemphotos(itemid, photo, sortnum) values('$itemid', '$tmp_file_name', 1)");
 
                         if($addimgQuery){
 
-                            $resizeimage = new SimpleImage();
-                            $resizeimage->load($newFilePath);
-                            $resizeimage->resizeToWidth(1024);
-                            $resizeimage->save($itemimgpathfull.'/'.$primage);
+                          //upload original image
+                          try {
+                            $s3-> putObject([
+                              'Bucket' => $config['s3']['bucket'],
+                              'Key' => "uploads/items/{$itemid}/original/{$tmp_file_name}",
+                              'Body' => fopen($tmp_file_path,'rb'),
+                              'ACL' => 'public-read'
+                            ]);
+                          } catch (S3Exception $e) {
+                            $errorupimgs++;
+                          }
 
-                            $imagetocrop = ($newFilePath);
-                            $filename= ($itemimgpathgrid.'/'.$primage);
-                            $thumb_width = 450;
-                            $thumb_height = 300;
-                            include('cropimage.php');
 
-                            //remove original
-                            // unlink($newFilePath);
+                          //resize and upload image
+                          // $resizeimage = new SimpleImage();
+                          // $resizeimage->load($tmp_file_path);
+                          // $resizeimage->resizeToWidth(1024);
+                          // $resizeimage->save($tmp_file_path);
+                          // try {
+                          //   $s3-> putObject([
+                          //     'Bucket' => $config['s3']['bucket'],
+                          //     'Key' => "uploads/items/{$itemid}/full/{$tmp_file_name}",
+                          //     'Body' => fopen($tmp_file_path,'rb'),
+                          //     'ACL' => 'public-read'
+                          //   ]);
+                          // } catch (S3Exception $e) {
+                          //   $errorupimgs++;
+                          // }
+
+                          //crop and upload image
+                          // $imagetocrop = ($tmp_file_path);
+                          // $filename= ($tmp_file_path);
+                          // $thumb_width = 450;
+                          // $thumb_height = 300;
+                          // include('cropimage.php');
+                          //
+                          // try {
+                          //   $s3-> putObject([
+                          //     'Bucket' => $config['s3']['bucket'],
+                          //     'Key' => "uploads/items/{$itemid}/grid/{$tmp_file_name}",
+                          //     'Body' => fopen($tmp_file_path,'rb'),
+                          //     'ACL' => 'public-read'
+                          //   ]);
+                          // } catch (S3Exception $e) {
+                          //   $errorupimgs++;
+                          // }
+
+                          unlink($tmp_file_path);
+                          $successupimgs++;
                         }
-
-
+                        else {
+                          $errorupimgs++;
+                        }
+                    }
+                    else {
+                      $errorupimgs++;
                     }
 
                 }//max size
+                else {
+                  $errorupimgs++;
+                }
             }//allowed file types
+            else {
+              $errorupimgs++;
+            }
 
           }
         }//end of loop to upload images
 
-        $_SESSION['rmnotfymsg'] = '<p class="alert alert-success">'.$itemname.' is successfully Added</p>';
+        $_SESSION['rmnotfymsg'] = '<p class="alert alert-success">'.$itemname.' is successfully Added.<br>Success '.$successupimgs.' images<br>Error '.$errorupimgs.' images</p>';
         header('location: '.$rdrlocation);
 
         }//end of run query
