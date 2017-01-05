@@ -8,6 +8,7 @@
 session_start();
 include"../inc/configAll.php";
 
+ini_set('max_execution_time', 300);
 
 if(isset($_SESSION['rdrlocation'])){
   $rdrlocation = $_SESSION['rdrlocation'];
@@ -151,38 +152,38 @@ if(isset($_POST['submitpost'])){
 
 
                           //resize and upload image
-                          // $resizeimage = new SimpleImage();
-                          // $resizeimage->load($tmp_file_path);
-                          // $resizeimage->resizeToWidth(1024);
-                          // $resizeimage->save($tmp_file_path);
-                          // try {
-                          //   $s3-> putObject([
-                          //     'Bucket' => $config['s3']['bucket'],
-                          //     'Key' => "uploads/items/{$itemid}/full/{$tmp_file_name}",
-                          //     'Body' => fopen($tmp_file_path,'rb'),
-                          //     'ACL' => 'public-read'
-                          //   ]);
-                          // } catch (S3Exception $e) {
-                          //   $errorupimgs++;
-                          // }
+                          $resizeimage = new SimpleImage();
+                          $resizeimage->load($tmp_file_path);
+                          $resizeimage->resizeToWidth(1024);
+                          $resizeimage->save($tmp_file_path);
+                          try {
+                            $s3-> putObject([
+                              'Bucket' => $config['s3']['bucket'],
+                              'Key' => "uploads/items/{$itemid}/full/{$tmp_file_name}",
+                              'Body' => fopen($tmp_file_path,'rb'),
+                              'ACL' => 'public-read'
+                            ]);
+                          } catch (S3Exception $e) {
+                            $errorupimgs++;
+                          }
 
                           //crop and upload image
-                          // $imagetocrop = ($tmp_file_path);
-                          // $filename= ($tmp_file_path);
-                          // $thumb_width = 450;
-                          // $thumb_height = 300;
-                          // include('cropimage.php');
-                          //
-                          // try {
-                          //   $s3-> putObject([
-                          //     'Bucket' => $config['s3']['bucket'],
-                          //     'Key' => "uploads/items/{$itemid}/grid/{$tmp_file_name}",
-                          //     'Body' => fopen($tmp_file_path,'rb'),
-                          //     'ACL' => 'public-read'
-                          //   ]);
-                          // } catch (S3Exception $e) {
-                          //   $errorupimgs++;
-                          // }
+                          $imagetocrop = ($tmp_file_path);
+                          $filename= ($tmp_file_path);
+                          $thumb_width = 450;
+                          $thumb_height = 300;
+                          include('cropimage.php');
+
+                          try {
+                            $s3-> putObject([
+                              'Bucket' => $config['s3']['bucket'],
+                              'Key' => "uploads/items/{$itemid}/grid/{$tmp_file_name}",
+                              'Body' => fopen($tmp_file_path,'rb'),
+                              'ACL' => 'public-read'
+                            ]);
+                          } catch (S3Exception $e) {
+                            $errorupimgs++;
+                          }
 
                           unlink($tmp_file_path);
                           $successupimgs++;
