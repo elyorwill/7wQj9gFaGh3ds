@@ -17,7 +17,7 @@
             <h1 class="content-title">Space Listing</h1>
 
             <!-- nav tab -->
-            <p class="text-center space-tab">
+            <p class="text-center mail-tab">
             <a data-toggle="tab" href="#all">All</a>
              | 
             <a data-toggle="tab" href="#avail">Available</a>

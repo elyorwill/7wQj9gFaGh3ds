@@ -110,4 +110,28 @@
         });
     </script>
 
+    <!-- price mask -->
+    <script src="assets/js/jquery.inputmask.bundle.js"></script>
+    <script>
+      $('#price').inputmask("numeric", {
+        radixPoint: ".",
+        groupSeparator: ",",
+        digits: 2,
+        autoGroup: true,
+        prefix: 'RM ', //Space after $, this will not truncate the first character.
+        rightAlign: false,
+        oncleared: function () { self.Value(''); }
+      });  
+    </script>
+
+
+    <!-- file uploader -->
+    <script src="asset/plugin/filer-master/js/jquery.filer.min.js"></script>
+    <script src="asset/plugin/filer-master/examples/dragdrop/js/custom.js" type="text/javascript"></script>
+    <script>
+    $(document).ready(function() {
+        $('#filer_input').filer();       
+    });
+    </script>
+
     </html>

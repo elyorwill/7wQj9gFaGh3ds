@@ -50,5 +50,9 @@
     <!-- wysiwyg summernote -->
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 
+    <!-- file uploader -->
+    <link href="asset/plugin/filer-master/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+    <link href="asset/plugin/filer-master/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+
     <!-- CUSTOM ADD -->
     <!-- /. CUSTOM ADD -->

@@ -225,14 +225,14 @@
 					              <h6 class="block-title m-b-0">select preferred bank</h6>
 						            <div>
 						              	<form action="" class="p-t-20">
-										  <input type="radio" name="bank" value="male"><img class="bank" src="asset/image/bank/mb.jpg" alt="" width="100%">
-										  <input type="radio" name="bank" value="female"><img class="bank" src="asset/image/bank/cimb.jpg" alt="" width="100%">
-										  <input type="radio" name="bank" value="other"><img class="bank" src="asset/image/bank/hlb.jpg" alt="" width="100%">
-										  <input type="radio" name="bank" value="male"><img class="bank" src="asset/image/bank/bi.jpg" alt="" width="100%">
+										  <input type="radio" name="bank" value="maybank"><img class="bank" src="asset/image/bank/mb.jpg" alt="" width="100%">
+										  <input type="radio" name="bank" value="cimb"><img class="bank" src="asset/image/bank/cimb.jpg" alt="" width="100%">
+										  <input type="radio" name="bank" value="hlb"><img class="bank" src="asset/image/bank/hlb.jpg" alt="" width="100%">
+										  <input type="radio" name="bank" value="bi"><img class="bank" src="asset/image/bank/bi.jpg" alt="" width="100%">
 										  <br>
-										  <input type="radio" name="bank" value="female"><img class="bank" src="asset/image/bank/rhb.jpg" alt="" width="100%">
-										  <input type="radio" name="bank" value="other"><img class="bank" src="asset/image/bank/pb.jpg" alt="" width="100%">
-										  <input type="radio" name="bank" value="male"><img class="bank" src="asset/image/bank/hsbc.jpg" alt="" width="100%">
+										  <input type="radio" name="bank" value="rhb"><img class="bank" src="asset/image/bank/rhb.jpg" alt="" width="100%">
+										  <input type="radio" name="bank" value="pb"><img class="bank" src="asset/image/bank/pb.jpg" alt="" width="100%">
+										  <input type="radio" name="bank" value="hsbc"><img class="bank" src="asset/image/bank/hsbc.jpg" alt="" width="100%">
 										</form>
 									</div>
 					              <h6 class="block-title m-t-50 m-b-20">account detail</h6>
