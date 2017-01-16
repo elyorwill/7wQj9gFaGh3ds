@@ -31,18 +31,52 @@
             <div style="width: 100%">
               <div class="image-gallery">
                 <div id="image1" data-role="main" class="ui-content">
-                  <img src="asset/image/gallery-1.jpg" alt="Image 1" onclick="onClick(this)" class="w3-hover-opacity">
-                  <div class="pull-left">
-                    <p class="gallery-numbering">Image 1 of 2</p>
+                  <!-- img src="asset/image/gallery-1.jpg" alt="Image 1" onclick="onClick(this)" class="w3-hover-opacity" -->
+                  <div class="preview-pic tab-content">
+                    <div class="tab-pane active" id="pic-1"><img src="asset/image/gallery-1.jpg" alt="Image 1" onclick="onClick(this)" class="w3-hover-opacity" /></div>
+                    <div class="tab-pane" id="pic-2"><img src="asset/image/space-photo-1.jpg" alt="Image 2" onclick="onClick(this)" class="w3-hover-opacity" /></div>
+                    <div class="tab-pane" id="pic-3"><img src="asset/image/space-photo-2.jpg" alt="Image 3" onclick="onClick(this)" class="w3-hover-opacity" /></div>
+                    <div class="tab-pane" id="pic-4"><img src="asset/image/space-photo-3.jpg" alt="Image 4" onclick="onClick(this)" class="w3-hover-opacity" /></div>
+                    <div class="tab-pane" id="pic-5"><img src="asset/image/space-photo-4.jpg" alt="Image 5" onclick="onClick(this)" class="w3-hover-opacity" /></div>
                   </div>
-                </div>
-              </div>
-              <div class="image-gallery">
-                <div id="image1" data-role="main" class="ui-content">
-                  <img src="asset/image/gallery-2.jpg" alt="Image 2" onclick="onClick(this)" class="w3-hover-opacity">
-                  <div class="pull-left">
-                    <p class="gallery-numbering">Image 2 of 2</p>
-                  </div>
+                  <section class="regular slider slide-nav">
+                    <div>
+                      <a data-target="#pic-1" data-toggle="tab"><img src="asset/image/gallery-1.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-2" data-toggle="tab"><img src="asset/image/space-photo-1.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-3" data-toggle="tab"><img src="asset/image/space-photo-2.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-4" data-toggle="tab"><img src="asset/image/space-photo-3.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-5" data-toggle="tab"><img src="asset/image/space-photo-4.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-3" data-toggle="tab"><img src="asset/image/space-photo-2.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-1" data-toggle="tab"><img src="asset/image/gallery-1.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-2" data-toggle="tab"><img src="asset/image/space-photo-1.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-3" data-toggle="tab"><img src="asset/image/space-photo-2.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-4" data-toggle="tab"><img src="asset/image/space-photo-3.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-5" data-toggle="tab"><img src="asset/image/space-photo-4.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-3" data-toggle="tab"><img src="asset/image/space-photo-2.jpg" /></a>
+                    </div>
+                  </section>
                 </div>
               </div>
               <!-- popup -->

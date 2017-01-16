@@ -25,8 +25,6 @@
     <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- BEGIN RETINA IMAGE LOADER -->
     <script type="text/javascript" src="assets/plugins/jquery-unveil/jquery.unveil.min.js"></script>
-    <!-- BEGIN TEXT ROTATOR -->
-    <script type="text/javascript" src="assets/plugins/text-rotate/jquery.simple-text-rotator.min.js"></script>
     <!-- END VENDOR JS -->
     <!-- BEGIN PAGES FRONTEND LIB -->
     <script type="text/javascript" src="pages/js/pages.frontend.js"></script>
@@ -89,6 +87,14 @@
                     format: 'MM/DD/YYYY h:mm A'
                 }
             });
+
+            $('input[name="specialdate"]').daterangepicker({
+                timePicker: false,
+                timePickerIncrement: 30,
+                locale: {
+                    format: 'MM/DD'
+                }
+            });
         });
     </script>
 
@@ -133,5 +139,19 @@
         $('#filer_input').filer();       
     });
     </script>
+
+    <!-- slick carousel -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>  
+    <script type="text/javascript" charset="utf-8" src="asset/plugin/slick-1.6.0/slick/slick.js"></script>
+      <script type="text/javascript">
+        $(document).on('ready', function() {
+          $(".regular").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 4
+          });
+        });
+      </script>
 
     </html>

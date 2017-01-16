@@ -61,6 +61,43 @@
                           </table>
                           <div class="m-t-10">
                             <button class="btn btn-danger btn-md">View Details</button>
+                            <button class="btn btn-danger btn-md">Make Payment</button>
+                          </div>
+                        </div>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#">
+                        <div class="col-md-3">
+                          <img src="asset/image/square-500.jpg" class="pull-left">
+                        </div>
+                        <div class="col-md-9">
+                          <span class="booking-id pull-right">114215765</span>
+                          <span class="booking-name">Casuarina@Meru</span>
+                          <span class="booking-address">1-C Jalan Meru Casuarina, Bandar Meru Raya, Ipoh, Malaysia</span>
+                          <h3 class="pull-left text-warning p-r-20" style="margin-top: 5px;">
+                            <i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
+                          </h3>
+                          <p class="rate-tips">Not yet rated. You can rate this space once you've completed your trip</p>
+                          <table>
+                            <tr>
+                              <td class="title">Check In</td>
+                              <td class="title">&nbsp;: &nbsp;</td>
+                              <td class="data">10 January 2017</td>
+                            </tr>
+                            <tr>
+                              <td class="title">Check Out</td>
+                              <td class="title">&nbsp;: &nbsp;</td>
+                              <td class="data">15 January 2017</td>
+                            </tr>
+                            <tr>
+                              <td class="title">Total Price</td>
+                              <td class="title">&nbsp;: &nbsp;</td>
+                              <td class="data">RM 323.50</td>
+                            </tr>
+                          </table>
+                          <div class="m-t-10">
+                            <button class="btn btn-danger btn-md">View Details</button>
                           </div>
                         </div>
                       </a>

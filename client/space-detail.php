@@ -14,35 +14,66 @@
             <div style="width: 100%">
               <h6 class="block-title m-b-0 text-danger">Petaling</h6>
               <h2 class="m-t-5 light">Scones Space</h2>
+
+              
+
               <div class="image-gallery">
                 <div id="image1" data-role="main" class="ui-content">
-                  <img src="asset/image/gallery-1.jpg" alt="Image 1" onclick="onClick(this)" class="w3-hover-opacity">
-                  <div class="pull-left">
-                    <p class="gallery-numbering">Image 1 of 2</p>
+                  <!-- img src="asset/image/gallery-1.jpg" alt="Image 1" onclick="onClick(this)" class="w3-hover-opacity" -->
+                  <div class="preview-pic tab-content">
+                    <div class="tab-pane active" id="pic-1"><img src="asset/image/gallery-1.jpg" alt="Image 1" onclick="onClick(this)" class="w3-hover-opacity" /></div>
+                    <div class="tab-pane" id="pic-2"><img src="asset/image/space-photo-1.jpg" alt="Image 2" onclick="onClick(this)" class="w3-hover-opacity" /></div>
+                    <div class="tab-pane" id="pic-3"><img src="asset/image/space-photo-2.jpg" alt="Image 3" onclick="onClick(this)" class="w3-hover-opacity" /></div>
+                    <div class="tab-pane" id="pic-4"><img src="asset/image/space-photo-3.jpg" alt="Image 4" onclick="onClick(this)" class="w3-hover-opacity" /></div>
+                    <div class="tab-pane" id="pic-5"><img src="asset/image/space-photo-4.jpg" alt="Image 5" onclick="onClick(this)" class="w3-hover-opacity" /></div>
                   </div>
+                  <section class="regular slider slide-nav">
+                    <div>
+                      <a data-target="#pic-1" data-toggle="tab"><img src="asset/image/gallery-1.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-2" data-toggle="tab"><img src="asset/image/space-photo-1.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-3" data-toggle="tab"><img src="asset/image/space-photo-2.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-4" data-toggle="tab"><img src="asset/image/space-photo-3.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-5" data-toggle="tab"><img src="asset/image/space-photo-4.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-3" data-toggle="tab"><img src="asset/image/space-photo-2.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-1" data-toggle="tab"><img src="asset/image/gallery-1.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-2" data-toggle="tab"><img src="asset/image/space-photo-1.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-3" data-toggle="tab"><img src="asset/image/space-photo-2.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-4" data-toggle="tab"><img src="asset/image/space-photo-3.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-5" data-toggle="tab"><img src="asset/image/space-photo-4.jpg" /></a>
+                    </div>
+                    <div>
+                      <a data-target="#pic-3" data-toggle="tab"><img src="asset/image/space-photo-2.jpg" /></a>
+                    </div>
+                  </section>
                 </div>
               </div>
-              <div class="image-gallery">
-                <div id="image1" data-role="main" class="ui-content">
-                  <img src="asset/image/gallery-2.jpg" alt="Image 2" onclick="onClick(this)" class="w3-hover-opacity">
-                  <div class="pull-left">
-                    <p class="gallery-numbering">Image 2 of 2</p>
-                  </div>
-                </div>
-              </div>
+              
               <!-- popup -->
               <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
                 <span class="w3-closebtn w3-hover-red w3-text-white w3-xxlarge w3-container w3-display-topright">&times;</span>
                 <div class="w3-modal-content w3-animate-zoom">
                   <img id="img01" style="width:100%">
                 </div>
-              </div>
-              <!--Slider Navigation -->
-              <div class="pull-right nextback">
-                <ul class="pagination m-b-0">
-                  <li><a onclick="plusDivs(-1)">❮</a></li>
-                  <li><a onclick="plusDivs(+1)">❯</a></li>
-                </ul>
               </div>
             </div>
           </div>
@@ -365,31 +396,12 @@
 
 <!-- CUSTOM SCRIPT HERE -->
 <script>
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-}
-</script>
-
-<script>
-  var slideIndex = 1;
-  showDivs(slideIndex);
-
-  function plusDivs(n) {
-      showDivs(slideIndex += n);
-  }
-
-  function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("image-gallery");
-      if (n > x.length) {slideIndex = 1} 
-      if (n < 1) {slideIndex = x.length} ;
-      for (i = 0; i < x.length; i++) {
-          x[i].style.display = "none"; 
-      }
-      x[slideIndex-1].style.display = "block"; 
+  function onClick(element) {
+    document.getElementById("img01").src = element.src;
+    document.getElementById("modal01").style.display = "block";
   }
 </script>
+
 <!-- ./ END CUSTOM SCRIPT -->
 <?php include 'end-html.php';?>
     

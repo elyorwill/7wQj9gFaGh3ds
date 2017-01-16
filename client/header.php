@@ -9,7 +9,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="pages/ico/76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="pages/ico/120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="pages/ico/152.png">
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon-rm.ico" />
 
 
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -53,6 +53,10 @@
     <!-- file uploader -->
     <link href="asset/plugin/filer-master/css/jquery.filer.css" type="text/css" rel="stylesheet" />
     <link href="asset/plugin/filer-master/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+
+    <!-- slick carousel -->
+    <link rel="stylesheet" type="text/css" href="asset/plugin/slick-1.6.0/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/plugin/slick-1.6.0/slick/slick-theme.css"/>
 
     <!-- CUSTOM ADD -->
     <!-- /. CUSTOM ADD -->
