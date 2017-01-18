@@ -58,5 +58,8 @@
     <link rel="stylesheet" type="text/css" href="asset/plugin/slick-1.6.0/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="asset/plugin/slick-1.6.0/slick/slick-theme.css"/>
 
+    <!-- star rating -->
+    <link rel="stylesheet" href="asset/plugin/five-star-rating-master/css/rating.min.css">
+
     <!-- CUSTOM ADD -->
     <!-- /. CUSTOM ADD -->

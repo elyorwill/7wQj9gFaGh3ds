@@ -154,4 +154,23 @@
         });
       </script>
 
+    <!-- star rating -->
+    <script src="asset/plugin/five-star-rating-master/js/dist/rating.min.js"></script>
+    <script>
+        // target element
+        var el = document.querySelector('#el');
+
+        // current rating, or initial rating
+        var currentRating = 0;
+
+        // max rating, i.e. number of stars you want
+        var maxRating= 5;
+
+        // callback to run after setting the rating
+        var callback = function(rating) { alert(rating); };
+
+        // rating instance
+        var myRating = rating(el, currentRating, maxRating, callback);
+    </script>
+
     </html>
